@@ -1,0 +1,10 @@
+name: astrbot_plugin_backfill
+display_name: 断联补读
+desc: AstrBot 插件 v1.3.1：机器人重连（或新会话）后，自动把断联期间用户没被读到的话从聊天记录里补回来，按时间顺序注入上下文再回复。只补机器人上次发言之后的内容，读不到就静默跳过。
+help: 重连后补读断联期间的用户消息。群聊走 get_group_msg_history，私聊走 get_friend_msg_history；只读机器人上次发言之后、别人说的话，按顺序拼成一段临时上下文注入本轮请求。
+version: v1.3.1
+author: 大肥鱼
+repo: https://github.com/XiaoDMeng/astrbot_plugin_backfill
+support_platforms:
+  - aiocqhttp
+astrbot_version: ">=4.13.0"

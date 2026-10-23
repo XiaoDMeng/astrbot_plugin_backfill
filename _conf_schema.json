@@ -1,0 +1,98 @@
+{
+    "enabled": {
+        "description": "【基础】启用断联补读",
+        "hint": "关闭后插件完全不做事",
+        "type": "bool",
+        "default": true
+    },
+    "gap_seconds": {
+        "description": "【触发】间隔多久算断联",
+        "hint": "同一会话距离上一次机器人处理消息超过这个秒数，就认为可能断联过，触发一次补读。进程重启后的第一条消息一定会触发（不看这个值）",
+        "type": "int",
+        "default": 600
+    },
+    "hook_hours": {
+        "description": "【触发】最多回看多少小时",
+        "hint": "断联后那条消息触发的补读，只补这么多小时内的内容；填 0 表示不限（漏多久补多久）",
+        "type": "int",
+        "default": 24
+    },
+    "on_new_session": {
+        "description": "【触发】新会话也补读",
+        "hint": "开启后，上下文为空的新会话（比如刚清空记忆）也会尝试补读；关闭则只补断联",
+        "type": "bool",
+        "default": true
+    },
+    "history_count": {
+        "description": "【读取】拉多少条聊天记录",
+        "hint": "向 OneBot/NapCat 请求的历史条数，越大越不容易漏，但也越慢",
+        "type": "int",
+        "default": 50
+    },
+    "max_messages": {
+        "description": "【读取】最多补多少条",
+        "hint": "从机器人上次发言到现在之间的消息，最多补这么多条（太多会撑爆上下文），超出时保留最近的",
+        "type": "int",
+        "default": 30
+    },
+    "max_chars": {
+        "description": "【读取】注入文本上限",
+        "hint": "拼好的补读文本最多多少字符，超出直接截断",
+        "type": "int",
+        "default": 3000
+    },
+    "include_group": {
+        "description": "【范围】群聊也补读",
+        "hint": "关闭后群里的断联不再补读，只剩私聊",
+        "type": "bool",
+        "default": true
+    },
+    "include_private": {
+        "description": "【范围】私聊也补读",
+        "hint": "关闭后私聊的断联不再补读，只剩群聊",
+        "type": "bool",
+        "default": true
+    },
+    "show_header": {
+        "description": "【格式】带上说明行",
+        "hint": "开启时在补读内容前加一句说明，让模型知道这些是断联期间漏掉的；关闭则只给纯聊天记录",
+        "type": "bool",
+        "default": true
+    },
+    "startup_catchup": {
+        "description": "【启动】开机自动补读并回一句",
+        "hint": "开着的话，机器人启动后会自己扫一遍最近的会话，发现上次发言之后有人说过话，就补读并主动回一句（不需要你再发消息触发）",
+        "type": "bool",
+        "default": true
+    },
+    "startup_auto_delay": {
+        "description": "【启动】自动决定什么时候开始补读",
+        "hint": "推荐开着。开着就不等固定秒数：插件加载完立刻每 3 秒探一次平台，平台能应答就马上补读（一般几秒到十几秒）；关掉才按下面的「启动后等几秒」先等",
+        "type": "bool",
+        "default": true
+    },
+    "startup_delay": {
+        "description": "【启动】启动后等几秒再扫（仅固定模式）",
+        "hint": "只在关掉上面的「自动决定」时生效：先固定等这么多秒再开始探平台（最小 5）。自动模式下这个值不起作用",
+        "type": "int",
+        "default": 25
+    },
+    "startup_hours": {
+        "description": "【启动】只看最近多少小时的会话",
+        "hint": "超过这个时间的会话不再自动补读（免得开机后去回几天前的消息）",
+        "type": "int",
+        "default": 24
+    },
+    "startup_max_sessions": {
+        "description": "【启动】最多补几个会话",
+        "hint": "开机补读一次最多处理几个会话，防止同时冒出好几条回复",
+        "type": "int",
+        "default": 3
+    },
+    "startup_dry_run": {
+        "description": "【启动】只演练不发送",
+        "hint": "开启后启动补读照常跑、照常写日志，但不会真的把回复发出去。默认开；确认可靠后再关掉",
+        "type": "bool",
+        "default": true
+    }
+}
